@@ -1,0 +1,35 @@
+/* Reuse alphaXiv's native button classes and theme tokens. */
+/* Hide before the first paint while preserving the native composer's layout. */
+body[data-refined-auto-highlight] > .absolute:has([aria-label="Composer mode"]) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+#refined-alphaxiv-arxiv {
+  color: inherit;
+  text-decoration: none;
+}
+
+#refined-alphaxiv-arxiv svg {
+  width: auto;
+  height: 20px;
+}
+
+#refined-alphaxiv-highlight[aria-pressed="true"] {
+  background: var(--color-custom-red);
+  border-color: var(--color-custom-red);
+  color: var(--color-active-item-fg);
+}
+
+#refined-alphaxiv-highlight[aria-pressed="true"]:hover {
+  background: color-mix(in srgb, var(--color-custom-red) 90%, var(--color-bg));
+}
+
+#refined-alphaxiv-arxiv[hidden],
+#refined-alphaxiv-highlight[hidden] { display: none; }
+
+#refined-alphaxiv-arxiv:focus-visible,
+#refined-alphaxiv-highlight:focus-visible {
+  outline: 2px solid var(--color-custom-red);
+  outline-offset: 3px;
+}
