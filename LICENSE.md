@@ -48,7 +48,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 ## arXiv logomark (excluded from MIT)
 
-The small logomark embedded in `content.js` comes from
+The small black logomark (`arxiv-logomark-small-black.svg`) embedded in `content.js` comes from
 [arXiv's official logo library](https://info.arxiv.org/brand/logos.html).
 The arXiv name and logo are registered trademarks of arXiv. No copyright or
 trademark license for this logomark is granted by this project's MIT license

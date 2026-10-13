@@ -1,6 +1,7 @@
 /* Reuse alphaXiv's native button classes and theme tokens. */
 /* Hide before the first paint while preserving the native composer's layout. */
-body[data-refined-auto-highlight] > .absolute:has([aria-label="Composer mode"]) {
+body[data-refined-auto-highlight]
+  > .absolute:has([aria-label="Composer mode"]) {
   opacity: 0 !important;
   pointer-events: none !important;
 }
@@ -13,6 +14,15 @@ body[data-refined-auto-highlight] > .absolute:has([aria-label="Composer mode"]) 
 #refined-alphaxiv-arxiv svg {
   width: auto;
   height: 20px;
+  fill: currentColor;
+  overflow: visible;
+}
+
+/* Use a consistent stroke across the complete logomark. */
+#refined-alphaxiv-arxiv path {
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linejoin: round;
 }
 
 #refined-alphaxiv-highlight[aria-pressed="true"] {
@@ -26,7 +36,9 @@ body[data-refined-auto-highlight] > .absolute:has([aria-label="Composer mode"]) 
 }
 
 #refined-alphaxiv-arxiv[hidden],
-#refined-alphaxiv-highlight[hidden] { display: none; }
+#refined-alphaxiv-highlight[hidden] {
+  display: none;
+}
 
 #refined-alphaxiv-arxiv:focus-visible,
 #refined-alphaxiv-highlight:focus-visible {

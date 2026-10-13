@@ -157,10 +157,13 @@ test("preference changes in another tab disable pending automatic saves", async 
 
 test("SPA navigation updates links and reinstalls controls after a UI remount", async () => {
   const r = await reader();
-  assert.equal(r.link.href, "https://arxiv.org/abs/2310.08864");
+  assert.equal(r.link.href, "https://arxiv.org/pdf/2310.08864");
   r.context.location.pathname = "/abs/1706.03762v2";
   r.refresh();
   assert.equal(r.link.href, "https://arxiv.org/abs/1706.03762v2");
+  r.context.location.pathname = "/pdf/1706.03762v2";
+  r.refresh();
+  assert.equal(r.link.href, "https://arxiv.org/pdf/1706.03762v2");
   r.context.location.pathname = "/abs/hep-th/9901001";
   r.refresh();
   assert.equal(r.link.href, "https://arxiv.org/abs/hep-th/9901001");

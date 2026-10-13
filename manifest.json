@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Refined alphaXiv",
-  "version": "0.1.0",
-  "description": "Switch to arXiv and highlight selected text automatically.",
+  "version": "0.1.1",
+  "description": "Highlight mode for alphaXiv.",
   "icons": {
     "16": "icons/16.png",
     "32": "icons/32.png",
@@ -10,9 +10,11 @@
     "128": "icons/128.png"
   },
   "permissions": ["storage"],
-  "content_scripts": [{
-    "matches": ["https://alphaxiv.org/*", "https://www.alphaxiv.org/*"],
-    "js": ["content.js"],
-    "css": ["content.css"]
-  }]
+  "content_scripts": [
+    {
+      "matches": ["https://alphaxiv.org/*", "https://www.alphaxiv.org/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ]
 }

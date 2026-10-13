@@ -2,8 +2,8 @@
 
 A small Chrome extension with two controls on alphaXiv paper pages:
 
-- The **arXiv logo**, next to Share on the left of the top bar, switches the
-  current tab to the paper's arXiv abstract page. It uses the official
+- The **arXiv logo**, next to Share on the left of the top bar, opens
+  the arXiv abstract in Abstract view or the arXiv PDF in Paper view. It uses the official
   [small arXiv logomark](https://info.arxiv.org/brand/logos.html), embedded locally.
 - The floating **highlighter** button, above Paper info and Notes, automatically
   saves selected PDF text using alphaXiv's native note composer. Red means on.

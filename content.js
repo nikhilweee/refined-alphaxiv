@@ -1,15 +1,20 @@
 (async () => {
-  const { autoHighlight } = await chrome.storage.local.get({ autoHighlight: false });
+  const { autoHighlight } = await chrome.storage.local.get({
+    autoHighlight: false,
+  });
   const arxiv = document.createElement("a");
   arxiv.id = "refined-alphaxiv-arxiv";
-  // Official small logomark: https://info.arxiv.org/brand/logos.html
-  arxiv.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.732 24.269" aria-hidden="true"><g><path d="M573.549,280.916l2.266,2.738,6.674-7.84c.353-.47.52-.717.353-1.117a1.218,1.218,0,0,0-1.061-.748h0a.953.953,0,0,0-.712.262Z" transform="translate(-566.984 -271.548)" fill="#bdb9b4"/><path d="M579.525,282.225l-10.606-10.174a1.413,1.413,0,0,0-.834-.5,1.09,1.09,0,0,0-1.027.66c-.167.4-.047.681.319,1.206l8.44,10.242h0l-6.282,7.716a1.336,1.336,0,0,0-.323,1.3,1.114,1.114,0,0,0,1.04.69A.992.992,0,0,0,571,293l8.519-7.92A1.924,1.924,0,0,0,579.525,282.225Z" transform="translate(-566.984 -271.548)" fill="#b31b1b"/><path d="M584.32,293.912l-8.525-10.275,0,0L573.53,280.9l-1.389,1.254a2.063,2.063,0,0,0,0,2.965l10.812,10.419a.925.925,0,0,0,.742.282,1.039,1.039,0,0,0,.953-.667A1.261,1.261,0,0,0,584.32,293.912Z" transform="translate(-566.984 -271.548)" fill="#bdb9b4"/></g></svg>';
+  // Official arxiv-logomark-small-black.svg; black parts follow the toolbar color via CSS.
+  // https://cornell.app.box.com/v/arxiv-logo-assets/file/804104728304
+  arxiv.innerHTML =
+    '<svg aria-hidden="true" id="logomark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 74.492 100.25"><g id="tiny_-_red" data-name="tiny - red"><path d="M553.264,283.782l29.888-27.1a5.163,5.163,0,0,1,3.265-1.515,4.168,4.168,0,0,1,.544.037,6.622,6.622,0,0,1,4.18,3.251c.612,1.507.268,2.693-1.416,4.88l-26.858,31.724Z" transform="translate(-526.086 -245.559)" fill="#fff"/><path d="M586.417,255.912a3.534,3.534,0,0,1,.448.03,5.923,5.923,0,0,1,3.581,2.791c.454,1.116.314,2.023-1.315,4.14L562.865,293.9l-8.558-10.047,29.349-26.616a4.4,4.4,0,0,1,2.761-1.321m0-1.5a5.767,5.767,0,0,0-3.689,1.642l-.041.033-.039.035L553.3,282.738l-1.077.977.943,1.107,8.558,10.046,1.146,1.345,1.141-1.348,26.266-31.022.023-.027.021-.028c1.575-2.046,2.328-3.622,1.516-5.62a7.309,7.309,0,0,0-4.779-3.713,4.891,4.891,0,0,0-.64-.043Z" transform="translate(-526.086 -245.559)"/><path d="M577.758,289.555l-43.7-41.923s-1.671-2.029-3.437-2.071a4.49,4.49,0,0,0-4.23,2.718c-.688,1.651-.194,2.809,1.315,4.97l34.775,42.2-.017,0-25.884,31.793c-1.255,1.337-2.032,3.683-1.331,5.367a4.587,4.587,0,0,0,4.287,2.841,4.087,4.087,0,0,0,3.082-1.523l35.1-32.634A7.926,7.926,0,0,0,577.758,289.555Z" transform="translate(-526.086 -245.559)"/><path d="M595.193,345.06A4.725,4.725,0,0,1,592,343.741l-44.508-42.39c-3.656-3.656-3.48-8.728.424-12.632l5.569-5.211,9.486,11.158,35.517,42.75a4.44,4.44,0,0,1,1.188,4.115,4.85,4.85,0,0,1-3.22,3.338A4.353,4.353,0,0,1,595.193,345.06Z" transform="translate(-526.086 -245.559)" fill="#fff"/><path d="M553.423,284.593l8.977,10.558L597.911,337.9c.873,1.093,1.419,2.186,1.047,3.418a4.092,4.092,0,0,1-2.721,2.837,3.557,3.557,0,0,1-1.045.159,4,4,0,0,1-2.687-1.124L548.01,300.808c-3.5-3.5-2.971-8.151.436-11.558l4.977-4.657m.124-2.17L552.4,283.5l-4.976,4.656c-4.192,4.191-4.372,9.816-.473,13.714l44.521,42.4a5.485,5.485,0,0,0,3.722,1.538,5.1,5.1,0,0,0,1.483-.224,5.59,5.59,0,0,0,3.719-3.838,5.175,5.175,0,0,0-1.31-4.788l-35.53-42.767-8.988-10.571-1.019-1.2Z" transform="translate(-526.086 -245.559)"/><path d="M592.074,250.547" transform="translate(-526.086 -245.559)" fill="#fff" stroke="#000" stroke-miterlimit="10" stroke-width="0.25"/></g></svg>';
   arxiv.title = "Switch to this paper on arXiv";
   arxiv.setAttribute("aria-label", "Switch to arXiv");
   const toggle = document.createElement("button");
   toggle.id = "refined-alphaxiv-highlight";
   toggle.type = "button";
-  toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>';
+  toggle.innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>';
 
   let enabled = false;
   let pending = false;
@@ -38,7 +43,11 @@
     chrome.storage.local.set({ autoHighlight: enabled });
   });
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "local" && changes.autoHighlight && changes.autoHighlight.newValue !== enabled) {
+    if (
+      area === "local" &&
+      changes.autoHighlight &&
+      changes.autoHighlight.newValue !== enabled
+    ) {
       setEnabled(changes.autoHighlight.newValue === true);
     }
   });
@@ -46,9 +55,10 @@
   function update() {
     frame = undefined;
     const paper = location.pathname.match(
-      /^\/(?:abs|pdf)\/(\d{4}\.\d{4,5}(?:v\d+)?|[a-z][a-z.\-]*\/\d{7}(?:v\d+)?)(?:\/|$)/i
+      /^\/(abs|pdf)\/(\d{4}\.\d{4,5}(?:v\d+)?|[a-z][a-z.\-]*\/\d{7}(?:v\d+)?)(?:\/|$)/i,
     );
-    if (paper) arxiv.href = `https://arxiv.org/abs/${paper[1]}`;
+    if (paper)
+      arxiv.href = `https://arxiv.org/${paper[1].toLowerCase()}/${paper[2]}`;
     const share = document.querySelector('button[aria-label="Share Paper" i]');
     const info = document.querySelector('button[aria-label="Paper info"]');
     arxiv.hidden = !paper || !share;
@@ -65,15 +75,21 @@
     if (!paper || !enabled || !pending) return;
 
     // Let alphaXiv create and save the annotation, preserving its native behavior.
-    const composers = [...document.querySelectorAll('body > .absolute:has([aria-label="Composer mode"])')]
-      .filter((panel) => {
-        const editor = panel.querySelector('[contenteditable="true"]');
-        return editor && !editor.textContent.trim() && panel.getClientRects().length;
-      });
+    const composers = [
+      ...document.querySelectorAll(
+        'body > .absolute:has([aria-label="Composer mode"])',
+      ),
+    ].filter((panel) => {
+      const editor = panel.querySelector('[contenteditable="true"]');
+      return (
+        editor && !editor.textContent.trim() && panel.getClientRects().length
+      );
+    });
     if (composers.length !== 1) return;
     const panel = composers[0];
-    const note = [...panel.querySelectorAll('[aria-label="Composer mode"] button')]
-      .find((button) => button.textContent.trim() === "Note");
+    const note = [
+      ...panel.querySelectorAll('[aria-label="Composer mode"] button'),
+    ].find((button) => button.textContent.trim() === "Note");
     if (note?.getAttribute("aria-pressed") === "false") {
       note.click();
       schedule();
@@ -91,7 +107,13 @@
   }
 
   function onSelection(event) {
-    if (!enabled || toggle.hidden || toggle.contains(event.target) || arxiv.contains(event.target)) return;
+    if (
+      !enabled ||
+      toggle.hidden ||
+      toggle.contains(event.target) ||
+      arxiv.contains(event.target)
+    )
+      return;
     if (event.type === "keyup" && !event.shiftKey) return;
     rememberSelection();
     pending = pdfSelection;
@@ -108,9 +130,11 @@
   function rememberSelection() {
     if (!enabled) return;
     const selection = window.getSelection();
-    if (selection?.toString().trim() &&
-        selection.anchorNode?.parentElement?.closest(".textLayer") &&
-        selection.focusNode?.parentElement?.closest(".textLayer")) {
+    if (
+      selection?.toString().trim() &&
+      selection.anchorNode?.parentElement?.closest(".textLayer") &&
+      selection.focusNode?.parentElement?.closest(".textLayer")
+    ) {
       pdfSelection = true;
       document.body.toggleAttribute("data-refined-auto-highlight", true);
     }
@@ -121,7 +145,10 @@
   document.addEventListener("mouseup", onSelection, true);
   document.addEventListener("keyup", onSelection, true);
   document.addEventListener("pointerdown", resetSelection, true);
-  new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
+  new MutationObserver(schedule).observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
   window.addEventListener("popstate", schedule);
   update();
 })();
