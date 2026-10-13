@@ -57,7 +57,7 @@ or by this attribution notice.
 Use and distribution must comply with
 [arXiv's name and logo guidelines](https://info.arxiv.org/brand/brand-guidelines.html)
 and any applicable permission from arXiv. Logo-use authorization for this
-extension has not been established; this notice is not a substitute for it.
+extension has not been established. This notice is not a substitute for it.
 
 Refined alphaXiv is independently developed and is not affiliated with or
 endorsed by alphaXiv or arXiv.
