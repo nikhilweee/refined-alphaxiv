@@ -9,7 +9,7 @@ A lightweight chrome extension that adds two controls on alphaXiv pages:
 
 ## Demo
 
-![Refined alphaXiv demo](https://i.imgur.com/Ku9crLL.gif)
+https://github.com/user-attachments/assets/a8b44f9a-99b0-43c3-bfea-4fda825809da
 
 ## Install
 
